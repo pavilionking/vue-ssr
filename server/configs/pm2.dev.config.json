@@ -1,0 +1,18 @@
+{
+	"apps" : [{
+		"name": "ifridge-dev",
+		"script": "./index.js",
+		"instances": 1,
+		"exec_mode": "fork",
+		"watch": true,
+		"ignore_watch" : ["node_modules", "public", "logs", "views", "package.json", "config", ".git/*"],
+		"out_file": "./logs/app.log",
+		"error_file": "./logs/err.log",
+		"merge_logs": true,
+		"listen_timeout": 8000,
+		"kill_timeout": 1600,
+		"env": {
+			"NODE_ENV": "development"
+		}
+	}]
+}

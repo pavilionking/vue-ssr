@@ -1,0 +1,13 @@
+{
+  "appenders": [
+    {"type": "console"},
+    {
+      "type" : "dateFile",
+      "filename" : "logs/log",
+      "pattern" : "-yyyy-MM-dd.log",
+      "alwaysIncludePattern" : true,
+      "category" : "ifridge"
+    }
+  ],
+  "replaceConsole": false
+}

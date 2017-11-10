@@ -1,0 +1,44 @@
+{
+	"apps" : [{
+		"name": "ifridge",
+		"script": "/home/centos/ifridge/current/server/index.js",
+		"instances": 2,
+		"exec_mode": "cluster",
+		"watch": false,
+		"out_file": "./ifridge/logs/app.log",
+		"error_file": "./ifridge/logs/err.log",
+		"combine_logs": true,
+		"listen_timeout": 8000,
+		"kill_timeout": 1600,
+		"env": {
+			"NODE_ENV": "production"
+		}
+	}],
+
+	"deploy" : {
+		"production" : {
+			"user" : "centos",   // 服务器用户名
+			"host" : "54.223.252.39",  // 服务器IP,可多个
+			"ref"  : "origin/master", // 分支
+			"repo" : "https://Vincent:xie200600317@git.tuoxi-tech.com/Tuoxi-GZ/ifridge.git",
+			"path" : "/home/centos/ifridge",       // 服务器源码目录，可自定义
+			"post-deploy" : "cd /home/centos/ifridge/current/server && npm install && pm2 startOrRestart configs/pm2.prod.config.json --env production",  // 现在的启动目录
+			"env"  : {
+				"NODE_ENV": "production"
+			}
+		},
+
+		"staging" : {
+			"key"  : "~/.ssh/roadshr.pem",
+			"user" : "root", // 服务器用户名
+			"host" : "212.83.163.1", // 服务器IP,可多个
+			"ref"  : "origin/develop", //分支
+			"repo" : "https://Vincent:xie200600317@git.tuoxi-tech.com/Vincent/ifridge.git",
+			"path" : "/home/centos/ifridge", // 服务器源码目录，可自定义
+			"post-deploy": "", // 现在的启动目录
+			"env"  : {
+				"NODE_ENV": "staging"
+			}
+		}
+	}
+}
